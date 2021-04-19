@@ -24,6 +24,7 @@ Light_Seeker/[Mm]emoryCaptures/
 Light_Seeker/[Aa]ssets/Plugins/Editor/JetBrains*
 
 # Visual Studio cache directory
+Light_Seeker/.vs/
 .vs/
 
 # Gradle cache directory
