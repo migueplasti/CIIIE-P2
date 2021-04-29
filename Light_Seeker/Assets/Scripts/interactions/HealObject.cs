@@ -5,6 +5,7 @@ using UnityEngine;
 public class HealObject : MonoBehaviour
 {
     int health = 10;
+    public AudioSource sound;
 
 
 
@@ -15,7 +16,7 @@ public class HealObject : MonoBehaviour
             Player player = collider.gameObject.GetComponent<Player>();
 
             player.Heal(health);
-
+            sound.Play();
             Destroy(gameObject);
 
 
