@@ -5,6 +5,7 @@ using UnityEngine;
 public class ArmorObject : MonoBehaviour
 {
     int armor = 10;
+    public AudioSource sound;
     
 
 
@@ -16,7 +17,7 @@ public class ArmorObject : MonoBehaviour
             Player player = collider.gameObject.GetComponent<Player>();
 
             player.HealArmor(armor);
-
+            sound.Play();
             Destroy(gameObject);
 
 

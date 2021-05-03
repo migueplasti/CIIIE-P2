@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.Keypad0)){
             TakeDamage(20);
             TakeArmorDamage(20);
         }
