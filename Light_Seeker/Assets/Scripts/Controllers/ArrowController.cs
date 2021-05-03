@@ -7,6 +7,8 @@ public class ArrowController : MonoBehaviour
     Rigidbody mybody;
     bool hit = false;
 
+    public float damage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,9 @@ public class ArrowController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.tag == "Enemy"){
+            collision.collider.GetComponent<EnemyStats>().RecieveDamage(damage);
+        }
         hit = true;
         Destroy(gameObject.GetComponent<Rigidbody>());
     }
