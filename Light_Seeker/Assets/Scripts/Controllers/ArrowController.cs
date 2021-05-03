@@ -12,6 +12,15 @@ public class ArrowController : MonoBehaviour
     {
         mybody = GetComponent<Rigidbody>();
     }
+        IEnumerator DestroyArrow()
+    {
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
+
+   
+    }
 
     // Update is called once per frame
     void Update()
@@ -19,6 +28,8 @@ public class ArrowController : MonoBehaviour
         if (!hit)
         {
             transform.rotation = Quaternion.LookRotation(mybody.velocity);
+        } else {
+            StartCoroutine(DestroyArrow());
         }
     }
 
