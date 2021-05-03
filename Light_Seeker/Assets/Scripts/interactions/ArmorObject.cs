@@ -5,9 +5,12 @@ using UnityEngine;
 public class ArmorObject : MonoBehaviour
 {
     int armor = 10;
-    public AudioSource sound;
+    private AudioSource sound;
     
 
+    void Start() {
+        sound = gameObject.GetComponent<AudioSource>();
+    }
 
 
     void OnTriggerEnter(Collider collider) {
@@ -16,9 +19,12 @@ public class ArmorObject : MonoBehaviour
 
             Player player = collider.gameObject.GetComponent<Player>();
 
-            player.HealArmor(armor);
-            sound.Play();
-            Destroy(gameObject);
+            if (player.currentArmor < player.maxArmor){
+                player.HealArmor(armor);
+                AudioSource.PlayClipAtPoint(sound.clip, gameObject.transform.position);
+                Destroy(gameObject);
+            }
+
 
 
 

@@ -5,8 +5,12 @@ using UnityEngine;
 public class HealObject : MonoBehaviour
 {
     int health = 10;
-    public AudioSource sound;
+    private AudioSource sound;
 
+
+    void Start() {
+        sound = gameObject.GetComponent<AudioSource>();
+    }
 
 
     void OnTriggerEnter(Collider collider) {
@@ -15,9 +19,12 @@ public class HealObject : MonoBehaviour
 
             Player player = collider.gameObject.GetComponent<Player>();
 
-            player.Heal(health);
-            sound.Play();
-            Destroy(gameObject);
+            if (player.currentHealth < player.maxHealth){
+                player.Heal(health);
+                AudioSource.PlayClipAtPoint(sound.clip, gameObject.transform.position);
+                Destroy(gameObject);
+            }
+
 
 
 
