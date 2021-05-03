@@ -29,6 +29,9 @@ public class EnemyStats : MonoBehaviour
     public float AttackCooldownTimeMain;
     public float AttackCooldownTime;
 
+    public float visualMemory;
+    public float visualMemoryMain;
+
     UnityEngine.AI.NavMeshAgent agent;
     Animator animator;
     
@@ -57,7 +60,13 @@ public class EnemyStats : MonoBehaviour
                     Wander();
                 }
             } else {
+
                 FollowTarget();
+
+                if (visualMemory < 0 ){
+                    target = null;
+                } 
+                visualMemory -= Time.deltaTime;
             }
 
         }
@@ -78,6 +87,7 @@ public class EnemyStats : MonoBehaviour
         while (i < hitColliders.Length) {
             if (hitColliders[i].transform.tag == "Player"){
                 target = hitColliders[i].transform.gameObject;
+                visualMemory = visualMemoryMain;
             }
             i++;
         }
