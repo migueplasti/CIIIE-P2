@@ -42,6 +42,11 @@ public class ArrowController : MonoBehaviour
             GetComponent<Rigidbody>().isKinematic=true; // stop physics
             transform.parent = collision.transform;
         }
+
+        if (collision.collider.tag == "Shield"){
+            GetComponent<Rigidbody>().isKinematic=true; // stop physics
+            transform.parent = collision.transform;
+        }
         hit = true;
         Destroy(gameObject.GetComponent<Rigidbody>());
     }
