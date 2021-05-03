@@ -47,7 +47,10 @@ public class EnemyStats : MonoBehaviour
                 SearchForTargets();
 
                 if (wanderTime > 0){
-                    agent.Move(Vector3.forward * Time.deltaTime);
+                    animator.SetBool("isWalking", true);
+                    animator.SetBool("isAttacking", false);     
+                    FaceDirection(transform.forward);
+                    agent.Move(transform.forward * Time.deltaTime * 3);
                     wanderTime -= Time.deltaTime;
                 } else {
                     wanderTime = Random.Range (5.0f, 15.0f);
@@ -120,6 +123,7 @@ public class EnemyStats : MonoBehaviour
         
         // target.transform.GetComponent<UserStats> ()
         print("Daño");
+        target.GetComponent<Player>().TakeDamage(Random.Range(AttackDamageMin, AttackDamageMax));
     }
 
     public void RecieveDamage (float dmg){
@@ -137,6 +141,10 @@ public class EnemyStats : MonoBehaviour
 
     void FaceTarget(){
         Vector3 direction = (target.transform.position - transform.position).normalized;
+        FaceDirection(direction);
+    }
+
+    void FaceDirection(Vector3 direction){
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }

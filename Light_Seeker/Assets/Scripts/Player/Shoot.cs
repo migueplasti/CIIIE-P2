@@ -13,7 +13,8 @@ public class Shoot : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject flecha = Instantiate(arrowPrefab, spawn.position, Quaternion.identity);
+            GameObject flecha = Instantiate(arrowPrefab, spawn.position, spawn.rotation);
+            flecha.GetComponent<Rigidbody>().velocity = cam.transform.forward * 1;
             flecha.GetComponent<Rigidbody>().AddForce(cam.transform.forward * power);
         }
     }
