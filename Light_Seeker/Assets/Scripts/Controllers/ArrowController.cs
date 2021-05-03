@@ -28,6 +28,8 @@ public class ArrowController : MonoBehaviour
     {
         if (collision.collider.tag == "Enemy"){
             collision.collider.GetComponent<EnemyStats>().RecieveDamage(damage);
+            GetComponent<Rigidbody>().isKinematic=true; // stop physics
+            transform.parent = collision.transform;
         }
         hit = true;
         Destroy(gameObject.GetComponent<Rigidbody>());
