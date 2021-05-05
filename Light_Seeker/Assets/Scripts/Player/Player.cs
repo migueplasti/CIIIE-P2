@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public int currentHealth;
     public HealthBar healthBar;
     public int maxArmor = 100;
-    public double currentArmor;
+    public int currentArmor;
     public ArmorBar armorBar;
 
     // Start is called before the first frame update
@@ -34,9 +34,29 @@ public class Player : MonoBehaviour
     }
 
     public void TakeDamage(int damage){
+
+        if(currentArmor > 0){
+            if(currentArmor - damage >= 0){
+                currentArmor -= damage;
+                armorBar.SetArmor(currentArmor);
+            }else{
+                currentHealth = (currentHealth + currentArmor) - damage;
+                currentArmor = 0;
+                healthBar.SetHealth(currentHealth);
+                armorBar.SetArmor(currentArmor);
+            }
+        }else{
+            currentHealth -= damage;
+            healthBar.SetHealth(currentHealth);
+        }
+    }
+
+    /*
+    public void TakeDamage(int damage){
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
     }
+    */
     
     public void Heal(int heal){
         currentHealth += heal;
@@ -48,7 +68,7 @@ public class Player : MonoBehaviour
         armorBar.SetArmor(currentArmor);
     }
 
-    public void TakeArmorDamage(double damage){
+    public void TakeArmorDamage(int damage){
         currentArmor -= damage;
         armorBar.SetArmor(currentArmor);
     }
