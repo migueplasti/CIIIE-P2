@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArmorObject : MonoBehaviour
 {
-    int armor = 10;
+    int armor = 30;
     private AudioSource sound;
     
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealObject : MonoBehaviour
 {
-    int health = 10;
+    int health = 30;
     private AudioSource sound;
 
 

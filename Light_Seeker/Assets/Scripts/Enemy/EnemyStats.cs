@@ -2,7 +2,10 @@ using System.Collections;
 using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
-{
+{   
+
+    private AudioSource audioSource;
+    public AudioClip [] sounds;
     public string enemyName;
     public float curHp;
     public float maxHp;
@@ -39,7 +42,8 @@ public class EnemyStats : MonoBehaviour
     void Start()
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        animator = GetComponent<Animator>();        
+        animator = GetComponent<Animator>();  
+        audioSource = GetComponent<AudioSource>();    
     }
 
     // Update is called once per frame
@@ -74,7 +78,7 @@ public class EnemyStats : MonoBehaviour
         if (curHp <= 0 && !isDead){
             isDead = true;
             curHp = 0;
-            Destroy(this.gameObject);
+            Death();
         }
         
     }
@@ -133,19 +137,24 @@ public class EnemyStats : MonoBehaviour
         
         // target.transform.GetComponent<UserStats> ()
         print("Daño");
+        if(target.GetComponent<Player>().currentArmor > 0){
+
+        }
         target.GetComponent<Player>().TakeDamage(Random.Range(AttackDamageMin, AttackDamageMax));
     }
 
     public void RecieveDamage (float dmg){
+        AudioClip hitSound = sounds[1];
         curHp -= dmg;
-
+        audioSource.clip = hitSound;
+        audioSource.Play();
         print("damage done = " + dmg);
         print("enemy hp = " + curHp);
     }
 
-    IEnumerator Death(){
-        yield return new WaitForSeconds (corpseTimer);
-
+    void Death(){
+        AudioClip deathSound = sounds[0];
+        AudioSource.PlayClipAtPoint(deathSound, this.gameObject.transform.position);
         Destroy(this.gameObject);
     }
 

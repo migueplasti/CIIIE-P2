@@ -6,12 +6,13 @@ public class ArrowController : MonoBehaviour
 {
     Rigidbody mybody;
     bool hit = false;
-
     public float damage;
+    private AudioSource  hitShieldSound;
 
     // Start is called before the first frame update
     void Start()
     {
+        hitShieldSound = gameObject.GetComponent<AudioSource>();
         mybody = GetComponent<Rigidbody>();
     }
         IEnumerator DestroyArrow()
@@ -44,6 +45,7 @@ public class ArrowController : MonoBehaviour
         }
 
         if (collision.collider.tag == "Shield"){
+            AudioSource.PlayClipAtPoint(hitShieldSound.clip, gameObject.transform.position);
             GetComponent<Rigidbody>().isKinematic=true; // stop physics
             transform.parent = collision.transform;
         }
