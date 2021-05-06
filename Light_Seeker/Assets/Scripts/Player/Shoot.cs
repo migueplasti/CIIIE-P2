@@ -16,7 +16,8 @@ public class Shoot : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+
+        if (Input.GetMouseButtonDown(0) && Time.timeScale != 0f)
         {
             GameObject flecha = Instantiate(arrowPrefab, spawn.position, spawn.rotation);
             flecha.GetComponent<Rigidbody>().velocity = cam.transform.forward * 1;

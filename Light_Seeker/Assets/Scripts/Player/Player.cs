@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -11,10 +12,13 @@ public class Player : MonoBehaviour
     public int maxArmor = 100;
     public int currentArmor;
     public ArmorBar armorBar;
+    private AudioSource audioSource;
+    public AudioClip [] sounds;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>(); 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         currentArmor = maxArmor;
@@ -34,8 +38,11 @@ public class Player : MonoBehaviour
     }
 
     public void TakeDamage(int damage){
+        AudioClip hitSound = sounds[1];
+        AudioClip deathSound = sounds[0];
 
         if(currentArmor > 0){
+            AudioSource.PlayClipAtPoint(hitSound, gameObject.transform.position);
             if(currentArmor - damage >= 0){
                 currentArmor -= damage;
                 armorBar.SetArmor(currentArmor);
@@ -48,15 +55,14 @@ public class Player : MonoBehaviour
         }else{
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
+            if(currentHealth <= 0){
+                //sonido
+                AudioSource.PlayClipAtPoint(deathSound, this.gameObject.transform.position);
+                //muere y manda al menu
+                SceneManager.LoadScene (sceneBuildIndex: 0);
+            }
         }
     }
-
-    /*
-    public void TakeDamage(int damage){
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
-    }
-    */
     
     public void Heal(int heal){
         currentHealth += heal;
