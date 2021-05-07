@@ -840,6 +840,12 @@ ModelImporter:
   - first:
       137: 13700000
     second: omniknight
+  - first:
+      74: 1827226128182048838
+    second: Take 001
+  - first:
+      74: -5405653242291790180
+    second: Take 001 (1)
   externalObjects: {}
   materials:
     materialImportMode: 0
