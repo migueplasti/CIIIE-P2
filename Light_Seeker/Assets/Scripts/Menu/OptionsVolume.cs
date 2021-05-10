@@ -6,8 +6,15 @@ public class OptionsVolume : MonoBehaviour
 {
 
     public AudioMixer audioMixer;
+    public float mouseSens = 100f;
     public void SetVolume (float volume){
         audioMixer.SetFloat("volume", volume);
+    }
+
+    public void sensitivity(float sens){
+        mouseSens = sens;
+
+        
     }
     
 }

@@ -13,12 +13,24 @@ public class Shoot : MonoBehaviour
     public float reloadTime;
     public float currentReload;
 
+    private Canvas crosshair;
+
     void Start() {
         sound = gameObject.GetComponent<AudioSource>();
+        crosshair = gameObject.GetComponentInChildren<Canvas>();
     }
     
     void Update()
     {
+        
+
+        if (Time.timeScale == 0f){
+            crosshair.enabled = false;
+        }
+        else if (crosshair.enabled == false ){
+            crosshair.enabled = true;
+        }
+
         if (reloading)
         {
             currentReload = currentReload + Time.deltaTime;

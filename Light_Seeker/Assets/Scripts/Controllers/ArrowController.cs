@@ -7,6 +7,8 @@ public class ArrowController : MonoBehaviour
     Rigidbody mybody;
     bool hit = false;
     public float damage;
+
+    public float timeToDestroy = 5f;
     private AudioSource  hitShieldSound;
 
     // Start is called before the first frame update
@@ -19,7 +21,7 @@ public class ArrowController : MonoBehaviour
     {
 
         //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(timeToDestroy);
         Destroy(gameObject);
 
    

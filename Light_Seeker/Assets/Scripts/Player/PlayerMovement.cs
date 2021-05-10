@@ -6,14 +6,17 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public CharacterController controller;
-    public float gravity = -9.81f, groundDistance = 0.4f, jumpHeight = 3f, speed = 12f;
+    public float gravity = -9.81f, groundDistance = 0.4f, jumpHeight = 3f, speed = 10f;
 
     public Transform groundCheck;
     public LayerMask groundMask;
     Vector3 velocity;
     bool isGrounded;
+    private CameraScript cameraScript;
 
-
+    private void Start() {
+        cameraScript = gameObject.GetComponentInChildren<CameraScript>();
+    }
 
     
 
@@ -43,9 +46,11 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }else if(Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
-            speed = 24f;
+            cameraScript.isSprint = true;
+            speed = 16f;
         } else if(!Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
+            cameraScript.isSprint = false;
             speed = 12f;
         }
 

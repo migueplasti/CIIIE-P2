@@ -9,9 +9,21 @@ public float mouseSensitivity = 100f;
 public Transform playerBody;
 float xRotation = 0f;
 
+public float sprintFov = 75f;
+public float idleFov = 60f;
+
+public float interpolation = 0.05f;
+
+
+[HideInInspector]
+public bool isSprint = false;
+
+private Camera mainCamera;
+
     // Start is called before the first frame update
     void Start()
     {
+        mainCamera = gameObject.GetComponent<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -30,6 +42,13 @@ float xRotation = 0f;
         //Quaternion sirve para rotar
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
+
+        if (isSprint){
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, sprintFov, interpolation);
+        } else {
+             mainCamera.fieldOfView =  Mathf.Lerp(mainCamera.fieldOfView, idleFov, interpolation);
+        }
+
 
     }
 }
