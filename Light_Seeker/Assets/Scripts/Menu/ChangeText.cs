@@ -24,7 +24,7 @@ public class ChangeText : MonoBehaviour
             changeText.text = "Encuentra refugio";
             //changeTextTo.GetComponent<Text>().text = "Encuentra refugio";
         }else if(SceneManager.GetActiveScene().buildIndex == 2){
-            changeText.text = "Huye del reino";
+            changeText.text = "Huye a las montañas";
             //changeTextTo.GetComponent<Text>().text = "Huye del reino";
         }
     }
