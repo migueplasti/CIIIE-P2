@@ -880,7 +880,8 @@ GameObject:
   - component: {fileID: 3683613894619095032}
   - component: {fileID: 3683613894619095035}
   - component: {fileID: 3683613894619095029}
-  - component: {fileID: 3683613894619095031}
+  - component: {fileID: 457099280132961175}
+  - component: {fileID: 8231377473525686423}
   m_Layer: 0
   m_Name: DungeonSkeleton_demo
   m_TagString: Enemy
@@ -1151,7 +1152,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3683613894619095031
+--- !u!114 &457099280132961175
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1160,31 +1161,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 3683613896457011416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a42dc3f79f93d146b09554e3f5263b5, type: 3}
+  m_Script: {fileID: 11500000, guid: d09608399572e5045a16cc0c26b3f683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - {fileID: 8300000, guid: b38cfe36cd1738749b7fd3864d64ca84, type: 3}
   - {fileID: 8300000, guid: 70e11de6c1a132b4fa337a689c347d86, type: 3}
-  enemyName: Gerrero
+  - {fileID: 8300000, guid: b38cfe36cd1738749b7fd3864d64ca84, type: 3}
   curHp: 23
   maxHp: 23
-  TextName: {fileID: 0}
-  isSelected: 0
-  corpseTimer: 0
   isDead: 0
   inCombat: 0
-  wanderTime: 10
-  movementSpeed: 3
+  wanderTime: 3
   target: {fileID: 0}
-  attackRange: 4
-  visionRange: 30
-  AttackDamageMin: 70
-  AttackDamageMax: 70
-  AttackCooldownTimeMain: 5
-  AttackCooldownTime: 0
-  visualMemory: 0
-  visualMemoryMain: 15
+  attackRange: 3
+  visionRange: 10
+  AttackDamageMin: 10
+  AttackDamageMax: 20
+  AttackCooldownTimeMain: 3
+  AttackCooldownTime: 3
+  visualMemory: 3
+  visualMemoryMain: 3
+--- !u!114 &8231377473525686423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3683613896457011416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba3ea3d424a25b74a93a0419155e4852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentDots: 0
+  target: {fileID: 0}
+  DotDamageMin: 2
+  DotDamageMax: 6
+  DotCooldownTimeMain: 4
+  DotCooldownTime: 0
+  dotsPerAttack: 4
 --- !u!1 &3683613896457011418
 GameObject:
   m_ObjectHideFlags: 0

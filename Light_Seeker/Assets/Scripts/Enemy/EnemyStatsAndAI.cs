@@ -1,25 +1,18 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyStats : MonoBehaviour
+public class EnemyStatsAndAI : MonoBehaviour
 {   
 
     private AudioSource audioSource;
     public AudioClip [] sounds;
-    public string enemyName;
     public float curHp;
     public float maxHp;
-
-    public GameObject TextName;
-    public bool isSelected;
-
-    public float corpseTimer;
 
     public bool isDead;
 
     public bool inCombat;
     public float wanderTime;
-    public float movementSpeed;
 
     public GameObject target;
 
@@ -37,13 +30,18 @@ public class EnemyStats : MonoBehaviour
 
     UnityEngine.AI.NavMeshAgent agent;
     Animator animator;
+    public Effect effect;
+
+
     
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         animator = GetComponent<Animator>();  
-        audioSource = GetComponent<AudioSource>();    
+        audioSource = GetComponent<AudioSource>();
+        effect = GetComponent<Effect>();
+        curHp = maxHp;
     }
 
     // Update is called once per frame
@@ -118,7 +116,6 @@ public class EnemyStats : MonoBehaviour
                 AttackCooldownTime -= Time.deltaTime;
 
             } else {
-                
                 AttackCooldownTime = AttackCooldownTimeMain;
                 AttackTarget();
             }
@@ -128,19 +125,24 @@ public class EnemyStats : MonoBehaviour
     void Wander() {
         animator.SetBool("isWalking", true);
         animator.SetBool("isAttacking", false);
-        transform.eulerAngles = new Vector3 (0, Random.Range(0, 360), 0);
+        Vector3 randomPosition = RandomNavSphere(transform.position, 30, UnityEngine.AI.NavMesh.AllAreas);
+
+        FacePosition(randomPosition);
+        agent.SetDestination(randomPosition);
     }
 
     void AttackTarget(){
         animator.SetBool("isWalking", true);
         animator.SetBool("isAttacking", false);
-        
-        // target.transform.GetComponent<UserStats> ()
-        print("Daño");
-        if(target.GetComponent<Player>().currentArmor > 0){
+        Debug.DrawRay(transform.position, transform.forward * (attackRange + 1), Color.white, 10);
+        if (Physics.BoxCast(transform.position, transform.localScale, transform.forward, transform.rotation, attackRange, 8)) {
+            print("Daño");
+            target.GetComponent<Player>().TakeDamage(Random.Range(AttackDamageMin, AttackDamageMax));
 
+            if (effect != null) {
+                effect.apply(target);
+            }
         }
-        target.GetComponent<Player>().TakeDamage(Random.Range(AttackDamageMin, AttackDamageMax));
     }
 
     public void RecieveDamage (float dmg){
@@ -163,8 +165,25 @@ public class EnemyStats : MonoBehaviour
         FaceDirection(direction);
     }
 
+    void FacePosition(Vector3 position){
+        Vector3 direction = (position - transform.position).normalized;
+        FaceDirection(direction);
+    }
+
     void FaceDirection(Vector3 direction){
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+
+    public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) {
+        Vector3 randDirection = Random.insideUnitSphere * dist;
+ 
+        randDirection += origin;
+ 
+        UnityEngine.AI.NavMeshHit navHit;
+ 
+        UnityEngine.AI.NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+ 
+        return navHit.position;
     }
 }

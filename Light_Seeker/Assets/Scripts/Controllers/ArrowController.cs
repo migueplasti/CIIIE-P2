@@ -41,7 +41,7 @@ public class ArrowController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Enemy"){
-            collision.collider.GetComponent<EnemyStats>().RecieveDamage(damage);
+            collision.collider.GetComponent<EnemyStatsAndAI>().RecieveDamage(damage);
             GetComponent<Rigidbody>().isKinematic=true; // stop physics
         }
 

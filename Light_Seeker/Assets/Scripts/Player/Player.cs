@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage){
         AudioClip hitSound = sounds[1];
         AudioClip deathSound = sounds[0];
-
+    
         if(currentArmor > 0){
             AudioSource.PlayClipAtPoint(hitSound, gameObject.transform.position);
             if(currentArmor - damage >= 0){
@@ -60,7 +60,24 @@ public class Player : MonoBehaviour
                 AudioSource.PlayClipAtPoint(deathSound, this.gameObject.transform.position);
                 //muere y manda al menu
                 SceneManager.LoadScene (sceneBuildIndex: 0);
+            } else {
+                AudioSource.PlayClipAtPoint(hitSound, gameObject.transform.position);
             }
+        }
+    }
+
+    public void TakePenDamage(int damage){
+        AudioClip hitSound = sounds[1];
+        AudioClip deathSound = sounds[0];
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        if(currentHealth <= 0){
+            //sonido
+            AudioSource.PlayClipAtPoint(deathSound, this.gameObject.transform.position);
+            //muere y manda al menu
+            SceneManager.LoadScene (sceneBuildIndex: 0);
+        } else {
+            AudioSource.PlayClipAtPoint(hitSound, gameObject.transform.position);
         }
     }
     
