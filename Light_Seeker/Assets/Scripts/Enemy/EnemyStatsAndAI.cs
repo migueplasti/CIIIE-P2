@@ -52,10 +52,15 @@ public class EnemyStatsAndAI : MonoBehaviour
                 SearchForTargets();
 
                 if (wanderTime > 0){
-                    animator.SetBool("isWalking", true);
-                    animator.SetBool("isAttacking", false);     
+                    if (DestinationReached()){
+                        animator.SetBool("isWalking", false);
+                        animator.SetBool("isAttacking", false);
+                    } else {
+                        animator.SetBool("isWalking", true);
+                        animator.SetBool("isAttacking", false);
+                    }
+                      
                     FaceDirection(transform.forward);
-                    agent.Move(transform.forward * Time.deltaTime * 3);
                     wanderTime -= Time.deltaTime;
                 } else {
                     wanderTime = Random.Range (5.0f, 15.0f);
@@ -88,8 +93,14 @@ public class EnemyStatsAndAI : MonoBehaviour
 
         while (i < hitColliders.Length) {
             if (hitColliders[i].transform.tag == "Player"){
-                target = hitColliders[i].transform.gameObject;
-                visualMemory = visualMemoryMain;
+                Vector3 target1 = hitColliders[i].transform.position;
+                Vector3 playerDirection = transform.position - target1;
+                float angle = Vector3.Angle(transform.forward, playerDirection);
+
+                if(Mathf.Abs(angle) > 90 && Mathf.Abs(angle)<270) {
+                    target = hitColliders[i].transform.gameObject;
+                    visualMemory = visualMemoryMain;
+                }  
             }
             i++;
         }
@@ -185,5 +196,19 @@ public class EnemyStatsAndAI : MonoBehaviour
         UnityEngine.AI.NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
  
         return navHit.position;
+    }
+
+    bool DestinationReached(){
+        if (!agent.pathPending)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                   return true;
+                }
+            }
+        }
+        return false;
     }
 }
