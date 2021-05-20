@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class EnemyStatsAndAI : MonoBehaviour
 {   
-
-    private AudioSource audioSource;
     public AudioClip [] sounds;
     public float curHp;
     public float maxHp;
@@ -35,8 +33,7 @@ public class EnemyStatsAndAI : MonoBehaviour
     void Start()
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        animator = GetComponent<Animator>();  
-        audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
         effect = GetComponent<Effect>();
         curHp = maxHp;
     }
@@ -147,13 +144,13 @@ public class EnemyStatsAndAI : MonoBehaviour
     public void RecieveDamage (float dmg){
         AudioClip hitSound = sounds[1];
         curHp -= dmg;
-        audioSource.clip = hitSound;
-        audioSource.Play();
+        AudioSource.PlayClipAtPoint(hitSound, this.gameObject.transform.position);
         print("damage done = " + dmg);
         print("enemy hp = " + curHp);
     }
 
     void Death(){
+        print("muerte");
         AudioClip deathSound = sounds[0];
         AudioSource.PlayClipAtPoint(deathSound, this.gameObject.transform.position);
         Destroy(this.gameObject);
