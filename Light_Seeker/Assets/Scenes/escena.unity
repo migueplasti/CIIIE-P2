@@ -1467,6 +1467,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: arthur_01
       objectReference: {fileID: 0}
+    - target: {fileID: 5473853956685789502, guid: d788994c651301e44be87a0b8e6604c1, type: 3}
+      propertyPath: AttackDamageMax
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473853956685789502, guid: d788994c651301e44be87a0b8e6604c1, type: 3}
+      propertyPath: AttackDamageMin
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d788994c651301e44be87a0b8e6604c1, type: 3}
 --- !u!1 &381868286
@@ -3242,6 +3250,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 705585927}
     m_Modifications:
+    - target: {fileID: 457099280132961175, guid: d751372edc63b0a4bbfa5418dab510f9, type: 3}
+      propertyPath: AttackDamageMax
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 457099280132961175, guid: d751372edc63b0a4bbfa5418dab510f9, type: 3}
+      propertyPath: AttackDamageMin
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3683613896457011416, guid: d751372edc63b0a4bbfa5418dab510f9, type: 3}
       propertyPath: m_Name
       value: DungeonSkeleton_demo (2)
@@ -3289,6 +3305,14 @@ PrefabInstance:
     - target: {fileID: 3683613896457116856, guid: d751372edc63b0a4bbfa5418dab510f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231377473525686423, guid: d751372edc63b0a4bbfa5418dab510f9, type: 3}
+      propertyPath: DotDamageMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231377473525686423, guid: d751372edc63b0a4bbfa5418dab510f9, type: 3}
+      propertyPath: DotDamageMin
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d751372edc63b0a4bbfa5418dab510f9, type: 3}
@@ -6466,11 +6490,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2405080987305611800, guid: fabbfb4a91c4e7d42bd9b8987de9d68d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 159.03
+      value: 166.41
       objectReference: {fileID: 0}
     - target: {fileID: 2405080987305611800, guid: fabbfb4a91c4e7d42bd9b8987de9d68d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.08
+      value: 1.89
       objectReference: {fileID: 0}
     - target: {fileID: 2405080987305611800, guid: fabbfb4a91c4e7d42bd9b8987de9d68d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6504,9 +6528,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2405088756419013592, guid: fabbfb4a91c4e7d42bd9b8987de9d68d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.79
+      objectReference: {fileID: 0}
     - target: {fileID: 2408566520726744058, guid: fabbfb4a91c4e7d42bd9b8987de9d68d, type: 3}
       propertyPath: m_Name
       value: PBR_Golem 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2409207241419783964, guid: fabbfb4a91c4e7d42bd9b8987de9d68d, type: 3}
+      propertyPath: AttackDamageMax
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 2409207241419783964, guid: fabbfb4a91c4e7d42bd9b8987de9d68d, type: 3}
+      propertyPath: AttackDamageMin
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fabbfb4a91c4e7d42bd9b8987de9d68d, type: 3}
