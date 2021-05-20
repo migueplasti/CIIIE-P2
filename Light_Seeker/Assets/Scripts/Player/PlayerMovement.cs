@@ -58,5 +58,13 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-    
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.layer == 4)
+        {
+            Debug.Log("Water");
+            controller.Move(new Vector3(319.5f, 23.9f, 384.6f) - transform.position);
+            GetComponent<Player>().TakePenDamage(10);
+        }
+    }
 }
