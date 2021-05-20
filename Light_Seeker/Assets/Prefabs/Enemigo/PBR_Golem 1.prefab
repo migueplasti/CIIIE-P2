@@ -1016,16 +1016,16 @@ MonoBehaviour:
   sounds:
   - {fileID: 8300000, guid: d77b1789c08107f45ba8ba2f6bf201b2, type: 3}
   - {fileID: 8300000, guid: d77b1789c08107f45ba8ba2f6bf201b2, type: 3}
-  curHp: 100
-  maxHp: 100
+  curHp: 130
+  maxHp: 130
   isDead: 0
   inCombat: 0
   wanderTime: 0
   target: {fileID: 0}
   attackRange: 5
   visionRange: 10
-  AttackDamageMin: 20
-  AttackDamageMax: 40
+  AttackDamageMin: 25
+  AttackDamageMax: 50
   visualMemory: 3
   visualMemoryMain: 3
 --- !u!195 &2409207241419783962
