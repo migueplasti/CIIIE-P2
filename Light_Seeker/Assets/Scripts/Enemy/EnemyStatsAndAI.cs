@@ -145,12 +145,9 @@ public class EnemyStatsAndAI : MonoBehaviour
         AudioClip hitSound = sounds[1];
         curHp -= dmg;
         AudioSource.PlayClipAtPoint(hitSound, this.gameObject.transform.position);
-        print("damage done = " + dmg);
-        print("enemy hp = " + curHp);
     }
 
     void Death(){
-        print("muerte");
         AudioClip deathSound = sounds[0];
         AudioSource.PlayClipAtPoint(deathSound, this.gameObject.transform.position);
         Destroy(this.gameObject);

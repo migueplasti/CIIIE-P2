@@ -829,7 +829,7 @@ MonoBehaviour:
   wanderTime: 0
   target: {fileID: 0}
   attackRange: 5
-  visionRange: 10
+  visionRange: 25
   AttackDamageMin: 25
   AttackDamageMax: 50
   visualMemory: 3
