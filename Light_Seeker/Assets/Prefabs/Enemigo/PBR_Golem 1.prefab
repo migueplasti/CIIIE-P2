@@ -1016,8 +1016,8 @@ MonoBehaviour:
   sounds:
   - {fileID: 8300000, guid: d77b1789c08107f45ba8ba2f6bf201b2, type: 3}
   - {fileID: 8300000, guid: d77b1789c08107f45ba8ba2f6bf201b2, type: 3}
-  curHp: 130
-  maxHp: 130
+  curHp: 70
+  maxHp: 70
   isDead: 0
   inCombat: 0
   wanderTime: 0
