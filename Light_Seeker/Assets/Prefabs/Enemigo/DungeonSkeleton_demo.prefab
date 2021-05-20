@@ -1177,8 +1177,8 @@ MonoBehaviour:
   visionRange: 10
   AttackDamageMin: 10
   AttackDamageMax: 20
-  AttackCooldownTimeMain: 3
-  AttackCooldownTime: 3
+  AttackCooldownTimeMain: 1.2
+  AttackCooldownTime: 1.2
   visualMemory: 3
   visualMemoryMain: 3
 --- !u!114 &8231377473525686423

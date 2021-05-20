@@ -22,9 +22,6 @@ public class EnemyStatsAndAI : MonoBehaviour
     public int AttackDamageMin;
     public int AttackDamageMax;
 
-    public float AttackCooldownTimeMain;
-    public float AttackCooldownTime;
-
     public float visualMemory;
     public float visualMemoryMain;
 
@@ -122,14 +119,7 @@ public class EnemyStatsAndAI : MonoBehaviour
             animator.SetBool("isAttacking", true);
             animator.SetBool("isWalking", false);
             agent.isStopped = true;
-            
-            if (AttackCooldownTime > 0){
-                AttackCooldownTime -= Time.deltaTime;
-
-            } else {
-                AttackCooldownTime = AttackCooldownTimeMain;
-                AttackTarget();
-            }
+            //Animation handles attack call
         }
     }
 
@@ -142,10 +132,8 @@ public class EnemyStatsAndAI : MonoBehaviour
         agent.SetDestination(randomPosition);
     }
 
-    void AttackTarget(){
-        animator.SetBool("isWalking", true);
-        animator.SetBool("isAttacking", false);
-        Debug.DrawRay(transform.position, transform.forward * (attackRange + 1), Color.white, 10);
+    public void AttackTarget(){
+        // Debug.DrawRay(transform.position, transform.forward * (attackRange + 1), Color.white, 10);
         if (Physics.BoxCast(transform.position, transform.localScale, transform.forward, transform.rotation, attackRange, 8)) {
             print("Daño");
             target.GetComponent<Player>().TakeDamage(Random.Range(AttackDamageMin, AttackDamageMax));
